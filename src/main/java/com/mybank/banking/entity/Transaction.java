@@ -1,10 +1,7 @@
-/**
- * 
- */
 package com.mybank.banking.entity;
 
 /**
- * 
+ * Entity class for Transaction
  */
 public class Transaction {
 	private Long transactionID;
@@ -20,7 +17,7 @@ public class Transaction {
 		this.accountID = accountID;
 		this.transactionAmount = transactionAmount;
 	}
-	
+
 	/**
 	 * @return the transactionID
 	 */
@@ -42,7 +39,6 @@ public class Transaction {
 		return transactionAmount;
 	}
 
-	
 	/**
 	 * @param transactionID the transactionID to set
 	 */

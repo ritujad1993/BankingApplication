@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.mybank.banking.repository;
 
 import java.util.ArrayList;
@@ -14,15 +11,15 @@ import com.mybank.banking.entity.Account;
 import com.mybank.banking.entity.Transaction;
 
 /**
- * 
+ * Repository class for Account to perform all database operations
  */
 @Repository
 public class AccountRepository {
-   
+
 	private List<Account> accounts = new ArrayList<>();
 	private long id = 1;
-	
-	public Account save(Account account) {	
+
+	public Account save(Account account) {
 		account.setAccountID(id++);
 		account.setTransactions(new ArrayList<Transaction>());
 		accounts.add(account);
@@ -33,11 +30,12 @@ public class AccountRepository {
 		return accounts;
 	}
 
-	public Optional <List<Account>> findByCustomerID(String customerID) {
-		return Optional.ofNullable(accounts.stream().filter(c -> c.getCustomerID().equals(customerID)).collect(Collectors.toList()));
+	public Optional<List<Account>> findByCustomerID(String customerID) {
+		return Optional.ofNullable(
+				accounts.stream().filter(c -> c.getCustomerID().equals(customerID)).collect(Collectors.toList()));
 	}
-	
-	public Optional<Account> findByAccountID(Long accountID){
+
+	public Optional<Account> findByAccountID(Long accountID) {
 		return accounts.stream().filter(c -> c.getAccountID() == accountID).findFirst();
 	}
 

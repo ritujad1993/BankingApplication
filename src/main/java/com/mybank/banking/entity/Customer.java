@@ -1,10 +1,7 @@
-/**
- * 
- */
 package com.mybank.banking.entity;
 
 /**
- * 
+ * Entity class for Customer
  */
 public class Customer {
 	private String firstName;
@@ -22,7 +19,6 @@ public class Customer {
 		this.lastName = lastName;
 		this.customerID = customerID;
 	}
-
 
 	/**
 	 * @return the firstName
