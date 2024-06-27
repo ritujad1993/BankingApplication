@@ -9,7 +9,7 @@ This is a simple backend application for adding new customers to bank and managi
 - Postman for API testing
 
 ## Setup
-1. Clone repository :- git clone <>
+1. Clone repository :- git clone https://github.com/ritujad1993/BankingApplication.git
 2. Import and open the project in Eclipse IDE/Intellij IDEA
 3. Build the project : maven clean install
 4. Run the application
