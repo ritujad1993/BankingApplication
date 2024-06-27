@@ -4,6 +4,7 @@ package com.mybank.banking.entity;
  * Entity class for Customer
  */
 public class Customer {
+
 	private String firstName;
 	private String lastName;
 	private String customerID;
@@ -39,6 +40,27 @@ public class Customer {
 	 */
 	public String getCustomerID() {
 		return customerID;
+	}
+
+	/**
+	 * @param firstName the firstName to set
+	 */
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	/**
+	 * @param lastName the lastName to set
+	 */
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	/**
+	 * @param customerID the customerID to set
+	 */
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
 	}
 
 	@Override

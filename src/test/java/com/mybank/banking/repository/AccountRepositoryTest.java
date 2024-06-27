@@ -18,35 +18,35 @@ public class AccountRepositoryTest {
 
 	@InjectMocks
 	AccountRepository accountRepository;
-	
+
 	@BeforeEach
 	public void setUp() {
 		MockitoAnnotations.openMocks(this);
 		accountRepository.save(new Account("1", 100.00));
 		accountRepository.save(new Account("2", 1000.00));
 	}
-	
+
 	@Test
 	public void testFindAll() {
 		List<Account> resultList = accountRepository.findAll();
 		assertNotNull(resultList);
-		assertEquals(2,resultList.size());
+		assertEquals(2, resultList.size());
 	}
-	
+
 	@Test
 	public void testFindByCustomerID() {
-		 Optional <List<Account>> resultList = accountRepository.findByCustomerID("1");
-		 
-		 assertTrue(resultList.isPresent());
-		 assertNotNull(resultList.get());
-		 assertEquals(1,resultList.get().size());
+		Optional<List<Account>> resultList = accountRepository.findByCustomerID("1");
+
+		assertTrue(resultList.isPresent());
+		assertNotNull(resultList.get());
+		assertEquals(1, resultList.get().size());
 	}
-	
+
 	@Test
 	public void testFindByAccountID() {
 		Account account = accountRepository.save(new Account("1", 1000.00));
 		Optional<Account> result = accountRepository.findByAccountID(account.getAccountID());
-		
+
 		assertTrue(result.isPresent());
 	}
 }
