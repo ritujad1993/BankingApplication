@@ -1,12 +1,9 @@
-/**
- * 
- */
 package com.mybank.banking.entity;
 
 import java.util.List;
 
 /**
- * 
+ * Entity class for Account
  */
 public class Account {
 
@@ -14,7 +11,7 @@ public class Account {
 	private String customerID;
 	private double balance;
 	private List<Transaction> transactions;
-		
+
 	/**
 	 * @param customerID
 	 * @param balance
@@ -24,8 +21,7 @@ public class Account {
 		this.customerID = customerID;
 		this.balance = balance;
 	}
-	
-	
+
 	/**
 	 * @return the accountID
 	 */
@@ -53,7 +49,7 @@ public class Account {
 	public List<Transaction> getTransactions() {
 		return transactions;
 	}
-	
+
 	/**
 	 * @param accountID the accountID to set
 	 */
@@ -73,5 +69,5 @@ public class Account {
 		return "Account [accountID=" + accountID + ", customerID=" + customerID + ", balance=" + balance
 				+ ", transactions=" + transactions + "]";
 	}
-	
+
 }

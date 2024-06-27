@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.mybank.banking.repository;
 
 import java.util.ArrayList;
@@ -12,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.mybank.banking.entity.Customer;
 
 /**
- * 
+ * Repository class for Customer to perform all database operations
  */
 @Repository
 public class CustomerRepository {
@@ -22,8 +19,8 @@ public class CustomerRepository {
 		Customer customer = new Customer("Peter", "Parker", "PeterP");
 		customers.add(customer);
 	}
-	
-	public void save(Customer customer) {	
+
+	public void save(Customer customer) {
 		customers.add(customer);
 	}
 
