@@ -7,15 +7,24 @@ public class Transaction {
 	private Long transactionID;
 	private Long accountID;
 	private double transactionAmount;
+	private String transactionType;
 
 	/**
 	 * @param accountID
 	 * @param transactionAmount
 	 */
-	public Transaction(Long accountID, double transactionAmount) {
+	public Transaction(Long accountID, double transactionAmount, String transactionType) {
 		super();
 		this.accountID = accountID;
 		this.transactionAmount = transactionAmount;
+		this.transactionType = transactionType;
+	}
+
+	/**
+	 * @return the transactionType
+	 */
+	public String getTransactionType() {
+		return transactionType;
 	}
 
 	/**
@@ -45,11 +54,32 @@ public class Transaction {
 	public void setTransactionID(Long transactionID) {
 		this.transactionID = transactionID;
 	}
+	
+	/**
+	 * @param accountID the accountID to set
+	 */
+	public void setAccountID(Long accountID) {
+		this.accountID = accountID;
+	}
+
+	/**
+	 * @param transactionAmount the transactionAmount to set
+	 */
+	public void setTransactionAmount(double transactionAmount) {
+		this.transactionAmount = transactionAmount;
+	}
+
+	/**
+	 * @param transactionType the transactionType to set
+	 */
+	public void setTransactionType(String transactionType) {
+		this.transactionType = transactionType;
+	}
 
 	@Override
 	public String toString() {
 		return "Transaction [transactionID=" + transactionID + ", accountID=" + accountID + ", transactionAmount="
-				+ transactionAmount + "]";
+				+ transactionAmount + ", transactionType=" + transactionType + "]";
 	}
 
 }

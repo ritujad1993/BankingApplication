@@ -2,6 +2,7 @@ package com.mybank.banking.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,7 +72,7 @@ public class AccountController {
 
 			if (initialCredit > 0) {
 				Transaction transaction = transactionService
-						.addTransaction(new Transaction(account.getAccountID(), initialCredit));
+						.addTransaction(new Transaction(account.getAccountID(), initialCredit, "Credit"));
 				account.getTransactions().add(transaction);
 			}
 
@@ -84,4 +85,37 @@ public class AccountController {
 		}
 
 	}
+
+	/**
+	 * Post endpoint to create a new transaction for an account and update the
+	 * balance of account accordingly
+	 * 
+	 * @param transaction details of transaction to be created
+	 * @return ResponseEntity with the created transaction if account exists else
+	 *         error message
+	 */
+	@PostMapping("/addTransaction")
+	public ResponseEntity<?> addTransactionToAccount(@RequestBody Transaction transaction) {
+
+		Optional<Account> account = accountService.getAccountByAccountID(transaction.getAccountID());
+		if (account.isEmpty()) {
+			logger.error("No data found for {}", transaction.getAccountID());
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Account does not exists");
+		} else {
+			Transaction newTransaction = transactionService.addTransaction(new Transaction(transaction.getAccountID(),
+					transaction.getTransactionAmount(), transaction.getTransactionType()));
+			account.get().getTransactions().add(newTransaction);
+
+			if ("Credit".equals(newTransaction.getTransactionType())) {
+				account.get().setBalance(account.get().getBalance() + newTransaction.getTransactionAmount());
+			} else if ("Debit".equals(newTransaction.getTransactionType())) {
+				account.get().setBalance(account.get().getBalance() - newTransaction.getTransactionAmount());
+			}
+			logger.info("New transaction created for Account: {}", newTransaction.getAccountID());
+			return ResponseEntity.status(HttpStatus.OK).body(account.get());
+
+		}
+
+	}
+
 }

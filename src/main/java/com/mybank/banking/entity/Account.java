@@ -51,6 +51,20 @@ public class Account {
 	}
 
 	/**
+	 * @param customerID the customerID to set
+	 */
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
+	}
+
+	/**
+	 * @param balance the balance to set
+	 */
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+	/**
 	 * @param accountID the accountID to set
 	 */
 	public void setAccountID(Long accountID) {

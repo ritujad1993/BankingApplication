@@ -70,4 +70,15 @@ public class AccountService {
 		logger.info("Retrieving accounts for customer ID: {}", customerID);
 		return accountRepository.findByCustomerID(customerID).orElse(new ArrayList<>());
 	}
+	
+	/**
+	 * Method to retrieve account for a particular accountID
+	 * 
+	 * @param accountID for which account details is fetched
+	 * @return an Optional containing Account details of found or else return empty
+	 */
+	public Optional<Account> getAccountByAccountID(Long accountID) {
+		logger.info("Retrieving account details for account ID: {}", accountID);
+		return accountRepository.findByAccountID(accountID);
+	}
 }

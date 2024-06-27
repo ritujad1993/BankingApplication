@@ -15,31 +15,31 @@ import org.mockito.MockitoAnnotations;
 import com.mybank.banking.entity.Transaction;
 
 public class TransactionRepositoryTest {
-	
+
 	@InjectMocks
 	TransactionRepository transactionRepository;
 
 	@BeforeEach
 	public void setUp() {
 		MockitoAnnotations.openMocks(this);
-		transactionRepository.save(new Transaction(1L, 100.00));
-		transactionRepository.save(new Transaction(2L, 5000.00));
+		transactionRepository.save(new Transaction(1L, 100.00, "Credit"));
+		transactionRepository.save(new Transaction(2L, 5000.00, "Debit"));
 	}
-	
+
 	@Test
 	public void testFindAll() {
 
 		List<Transaction> resultList = transactionRepository.findAll();
 		assertNotNull(resultList);
-		assertEquals(2,resultList.size());
+		assertEquals(2, resultList.size());
 	}
-	
+
 	@Test
-	public void testfindByAccountID() {		
+	public void testfindByAccountID() {
 		Optional<List<Transaction>> resultList = transactionRepository.findByAccountID(1L);
-		
+
 		assertTrue(resultList.isPresent());
 		assertNotNull(resultList.get());
-		assertEquals(1,resultList.get().size());
+		assertEquals(1, resultList.get().size());
 	}
 }

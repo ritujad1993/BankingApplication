@@ -19,19 +19,19 @@ import com.mybank.banking.entity.Transaction;
 import com.mybank.banking.repository.TransactionRepository;
 
 public class TransactionServiceTest {
-	
+
 	@InjectMocks
 	TransactionService transactionService;
-	
+
 	@Mock
 	TransactionRepository transactionRepository;
-	
+
 	private Transaction transaction;
-	
+
 	@BeforeEach
 	public void setUp() {
 		MockitoAnnotations.openMocks(this);
-		transaction = new Transaction(1L, 100.00);
+		transaction = new Transaction(1L, 100.00, "Credit");
 	}
 
 	@Test
@@ -39,29 +39,29 @@ public class TransactionServiceTest {
 		transactionService.addTransaction(transaction);
 		verify(transactionRepository).save(transaction);
 	}
-	
+
 	@Test
 	public void testGetAllTransaction() {
 		List<Transaction> transactionList = new ArrayList<>();
 		transactionList.add(transaction);
 		when(transactionRepository.findAll()).thenReturn(transactionList);
-		
+
 		List<Transaction> resultList = transactionService.getAllTransaction();
-		
+
 		assertNotNull(resultList);
-		assertEquals(transactionList,resultList);
+		assertEquals(transactionList, resultList);
 	}
-	
+
 	@Test
 	public void testGetTransactionsByAccountID() {
 		Optional<List<Transaction>> transactionList = Optional.of(new ArrayList<>());
 		transaction.setTransactionID(1L);
 		transactionList.get().add(transaction);
 		when(transactionRepository.findByAccountID(1L)).thenReturn(transactionList);
-		
+
 		List<Transaction> resultList = transactionService.getTransactionsByAccountID(1L);
-		
+
 		assertNotNull(resultList);
-		assertEquals(transactionList.get(),resultList);
+		assertEquals(transactionList.get(), resultList);
 	}
 }

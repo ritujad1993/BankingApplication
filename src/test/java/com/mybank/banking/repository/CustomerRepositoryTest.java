@@ -18,23 +18,23 @@ public class CustomerRepositoryTest {
 
 	@InjectMocks
 	CustomerRepository customerRepository;
-	
+
 	@BeforeEach
 	public void setUp() {
 		MockitoAnnotations.openMocks(this);
-		
+
 	}
-	
+
 	@Test
 	public void testFindAll() {
 		List<Customer> customerList = customerRepository.findAll();
 		assertNotNull(customerList);
-		assertEquals(1,customerList.size());
+		assertEquals(1, customerList.size());
 	}
-	
+
 	@Test
 	public void testFindByCustomerID() {
-		customerRepository.save(new Customer("John","Doe","JDoe"));
+		customerRepository.save(new Customer("John", "Doe", "JDoe"));
 		Optional<Customer> result = customerRepository.findByCustomerID("JDoe");
 		assertTrue(result.isPresent());
 	}

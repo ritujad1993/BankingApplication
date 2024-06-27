@@ -22,47 +22,46 @@ import com.mybank.banking.repository.CustomerRepository;
 
 class CustomerServiceTest {
 
-    @Mock
-    private CustomerRepository customerRepository;
+	@Mock
+	private CustomerRepository customerRepository;
 
-    @InjectMocks
-    private CustomerService customerService;
+	@InjectMocks
+	private CustomerService customerService;
 
-    private Customer customer;
+	private Customer customer;
 
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
-        customer = new Customer("John","Doe","1");
+	@BeforeEach
+	public void setUp() {
+		MockitoAnnotations.openMocks(this);
+		customer = new Customer("John", "Doe", "1");
 
-    }
+	}
 
-    @Test
-    public void testFindCustomerById() {
-        when(customerRepository.findByCustomerID("1")).thenReturn(Optional.of(customer));
-        Optional<Customer> result = customerService.findCustomerById("1");
-        assertTrue(result.isPresent());
-        assertEquals(customer, result.get());
-    }
+	@Test
+	public void testFindCustomerById() {
+		when(customerRepository.findByCustomerID("1")).thenReturn(Optional.of(customer));
+		Optional<Customer> result = customerService.findCustomerById("1");
+		assertTrue(result.isPresent());
+		assertEquals(customer, result.get());
+	}
 
-    @Test
-    public void testSaveCustomer() {
-        customerService.addCustomer(customer);
-        verify(customerRepository, times(1)).save(customer);
-    }
-    
-    
-    @Test
-    public void testGetAllCustomers() {
-    	List<Customer> customerList = new ArrayList<>();
-    	customerList.add(customer);
-    	when(customerRepository.findAll()).thenReturn(customerList);
-    	List<Customer> resultList = customerService.getAllCustomers();
-    	assertNotNull(resultList);
-    	assertEquals(1, resultList.size());
-    	assertEquals("1", resultList.get(0).getCustomerID());
-    	assertEquals("John", resultList.get(0).getFirstName());
-    	assertEquals("Doe", resultList.get(0).getLastName());
-    	
-    }
+	@Test
+	public void testSaveCustomer() {
+		customerService.addCustomer(customer);
+		verify(customerRepository, times(1)).save(customer);
+	}
+
+	@Test
+	public void testGetAllCustomers() {
+		List<Customer> customerList = new ArrayList<>();
+		customerList.add(customer);
+		when(customerRepository.findAll()).thenReturn(customerList);
+		List<Customer> resultList = customerService.getAllCustomers();
+		assertNotNull(resultList);
+		assertEquals(1, resultList.size());
+		assertEquals("1", resultList.get(0).getCustomerID());
+		assertEquals("John", resultList.get(0).getFirstName());
+		assertEquals("Doe", resultList.get(0).getLastName());
+
+	}
 }
